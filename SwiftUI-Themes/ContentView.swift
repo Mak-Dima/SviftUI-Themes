@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            Tab("Data", systemImage: "text.viewfinder"){}
-            Tab("Setting", systemImage: "gear"){}
+            Tab("Data", systemImage: "text.document") { DataView() }
+            Tab("Settings", systemImage: "gear") { SettingsView() }
         }
     }
 }
