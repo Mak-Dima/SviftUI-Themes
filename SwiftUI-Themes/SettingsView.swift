@@ -8,19 +8,33 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var isDarkModeEnabled = false
-    @State var isLightModeEnabled = false
+    
+    @EnvironmentObject var themeService: ThemeService
     
     var body: some View {
         VStack{
             Text("Settings")
-            Toggle("Dark Mode", isOn: $isDarkModeEnabled)
-            Toggle("Light Mode", isOn: $isLightModeEnabled)
+                .font(.title)
+            List{
+                Section("Themes"){
+                    Toggle("Dark Mode", isOn: $themeService.isDarkMode)
+                    Toggle("Light Mode", isOn: $themeService.isLightMode)
+                }
+            }
         }
         .padding()
+        .onChange(of: themeService.isDarkMode, initial: false) { oldVal, newVal in
+            themeService.isLightMode = oldVal
+            themeService.isDarkMode = newVal
+        }
+        .onChange(of: themeService.isLightMode, initial: false) { oldVal, newVal  in
+            themeService.isDarkMode = oldVal
+            themeService.isLightMode = newVal
+        }
     }
 }
 
 #Preview {
     SettingsView()
+        .environmentObject(ThemeService())
 }
