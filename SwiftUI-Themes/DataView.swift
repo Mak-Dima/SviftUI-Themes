@@ -9,7 +9,12 @@ import SwiftUI
 
 struct DataView: View {
     var body: some View {
-        Text("Data")
+        VStack {
+            Text("Data")
+                .foregroundStyle(.fontLight)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.backgroundLight)
     }
 }
 
