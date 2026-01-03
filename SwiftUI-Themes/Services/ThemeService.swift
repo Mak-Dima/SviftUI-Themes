@@ -23,13 +23,24 @@ struct DarkTheme: Theme {
 }
 
 class ThemeService : ObservableObject {
+    private var lightTheme: Theme = LightTheme()
+    private var darkTheme: Theme = DarkTheme()
+    
     @Published var currentTheme: Theme
     @Published var isDarkMode: Bool
     @Published var isLightMode: Bool
     
     init() {
-        currentTheme = LightTheme()
+        currentTheme = lightTheme
         isDarkMode = false
         isLightMode = true
+    }
+    
+    func toggleTheme() {
+        if isDarkMode {
+            currentTheme = darkTheme
+        } else {
+            currentTheme = lightTheme
+        }
     }
 }
