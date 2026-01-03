@@ -26,10 +26,12 @@ struct SettingsView: View {
         .onChange(of: themeService.isDarkMode, initial: false) { oldVal, newVal in
             themeService.isLightMode = oldVal
             themeService.isDarkMode = newVal
+            themeService.currentTheme = DarkTheme()
         }
         .onChange(of: themeService.isLightMode, initial: false) { oldVal, newVal  in
             themeService.isDarkMode = oldVal
             themeService.isLightMode = newVal
+            themeService.currentTheme = LightTheme()
         }
     }
 }
