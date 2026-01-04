@@ -17,13 +17,13 @@ struct DataView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Button("Up"){print("UP")}
-                .foregroundStyle(theme.current.fontColor)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .customButtonModifier()
-            
-            Text(textData)
+            Button {
+                print("UP")
+            } label: {
+                Text("Up")
+                    .customButtonModifier()
+            }
+                       Text(textData)
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity )
                 .foregroundStyle(theme.current.fontColor)
@@ -33,11 +33,12 @@ struct DataView: View {
                         .stroke(theme.current.strokeColor, lineWidth: 1)
                 }
             
-            Button("Down"){print("DOWN")}
-                .foregroundStyle(theme.current.fontColor)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .customButtonModifier()
+            Button {
+                print("DOWN")
+            } label: {
+                Text("Down")
+                    .customButtonModifier()
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()

@@ -13,6 +13,9 @@ struct ButtonModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .foregroundStyle(theme.current.fontColor)
+            .frame(maxWidth: .infinity)
+            .padding()
             .background{
                 RoundedRectangle(cornerRadius: 15)
                     .fill(theme.current.buttonBackgroundColor)
