@@ -18,7 +18,7 @@ struct DataView: View {
     var body: some View {
         VStack(spacing: 10) {
             Button("Up"){print("UP")}
-                .foregroundStyle(theme.currentTheme.fontColor)
+                .foregroundStyle(theme.current.fontColor)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .customButtonModifier()
@@ -26,22 +26,22 @@ struct DataView: View {
             Text(textData)
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity )
-                .foregroundStyle(theme.currentTheme.fontColor)
+                .foregroundStyle(theme.current.fontColor)
                 .background{
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(theme.currentTheme.backgroundColor)
+                        .fill(theme.current.backgroundColor)
                         .stroke(Color.black, lineWidth: 1)
                 }
             
             Button("Down"){print("DOWN")}
-                .foregroundStyle(theme.currentTheme.fontColor)
+                .foregroundStyle(theme.current.fontColor)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .customButtonModifier()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .background(theme.currentTheme.backgroundColor)
+        .background(theme.current.backgroundColor)
     }
 }
 

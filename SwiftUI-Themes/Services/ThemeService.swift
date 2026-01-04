@@ -26,21 +26,21 @@ class ThemeService : ObservableObject {
     private var lightTheme: Theme = LightTheme()
     private var darkTheme: Theme = DarkTheme()
     
-    @Published var currentTheme: Theme
+    @Published var current: Theme
     @Published var isDarkMode: Bool
     @Published var isLightMode: Bool
     
     init() {
-        currentTheme = lightTheme
+        current = lightTheme
         isDarkMode = false
         isLightMode = true
     }
     
     func toggleTheme() {
         if isDarkMode {
-            currentTheme = darkTheme
+            current = darkTheme
         } else {
-            currentTheme = lightTheme
+            current = lightTheme
         }
     }
 }
