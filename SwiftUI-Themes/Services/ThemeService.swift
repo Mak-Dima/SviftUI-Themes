@@ -44,19 +44,20 @@ enum ThemeType: String, CaseIterable, Identifiable {
 }
 
 class ThemeService : ObservableObject {
-    private var lightTheme: Theme = LightTheme()
-    private var darkTheme: Theme = DarkTheme()
+    private var lightTheme: Theme
+    private var darkTheme: Theme
     
     @Published var current: Theme
-    @Published var selectedTheme: ThemeType = .light
-    @Published var isDarkMode: Bool
-    @Published var isLightMode: Bool
+    @Published var selectedTheme: ThemeType = .light {
+        didSet {
+            updateTheme()
+        }
+    }
     
     init() {
+        lightTheme = LightTheme()
+        darkTheme = DarkTheme()
         current = lightTheme
-        isDarkMode = false
-        isLightMode = true
-        
         setTabBarApperance()
     }
     
@@ -75,16 +76,8 @@ class ThemeService : ObservableObject {
     func updateTheme() {
         switch selectedTheme {
         case .dark:
-            current = DarkTheme()
-        case .light:
-            current = LightTheme()
-        }
-    }
-
-    func toggleTheme() {
-        if isDarkMode {
             current = darkTheme
-        } else {
+        case .light:
             current = lightTheme
         }
     }
