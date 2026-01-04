@@ -9,29 +9,35 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject var themeService: ThemeService
+    @EnvironmentObject var theme: ThemeService
     
     var body: some View {
         VStack{
             Text("Settings")
                 .font(.title)
+                .foregroundStyle(theme.current.fontColor)
             List{
                 Section("Themes"){
-                    Toggle("Dark Mode", isOn: $themeService.isDarkMode)
-                    Toggle("Light Mode", isOn: $themeService.isLightMode)
+                    Toggle("Dark Mode", isOn: $theme.isDarkMode)
+                    Toggle("Light Mode", isOn: $theme.isLightMode)
                 }
+                .listRowBackground(theme.current.backgroundColor)
             }
+            .scrollContentBackground(.hidden)
+            .background(theme.current.backgroundColor)
+            .foregroundStyle(theme.current.fontColor)
         }
         .padding()
-        .onChange(of: themeService.isDarkMode, initial: false) { oldVal, newVal in
-            themeService.isLightMode = oldVal
-            themeService.isDarkMode = newVal
-            themeService.toggleTheme()
+        .background(theme.current.backgroundColor)
+        .onChange(of: theme.isDarkMode, initial: false) { oldVal, newVal in
+            theme.isLightMode = oldVal
+            theme.isDarkMode = newVal
+            theme.toggleTheme()
         }
-        .onChange(of: themeService.isLightMode, initial: false) { oldVal, newVal  in
-            themeService.isDarkMode = oldVal
-            themeService.isLightMode = newVal
-            themeService.toggleTheme()
+        .onChange(of: theme.isLightMode, initial: false) { oldVal, newVal  in
+            theme.isDarkMode = oldVal
+            theme.isLightMode = newVal
+            theme.toggleTheme()
         }
     }
 }

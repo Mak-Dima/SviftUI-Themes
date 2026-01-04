@@ -15,7 +15,7 @@ struct ButtonModifier: ViewModifier {
         content
             .background{
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.yellow)
+                    .fill(theme.current.buttonBackgroundColor)
                     .stroke(theme.current.strokeColor, lineWidth: 1)
             }
     }

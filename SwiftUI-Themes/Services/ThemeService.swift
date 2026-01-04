@@ -11,18 +11,21 @@ protocol Theme {
     var fontColor: Color { get set }
     var backgroundColor: Color { get set }
     var strokeColor: Color { get set }
+    var buttonBackgroundColor: Color { get set }
 }
 
 struct LightTheme: Theme {
     var fontColor: Color = .fontLight
     var backgroundColor: Color = .backgroundLight
     var strokeColor: Color = .strokeLight
+    var buttonBackgroundColor: Color = .buttonBackgroundLight
 }
 
 struct DarkTheme: Theme {
     var fontColor: Color = .fontDark
     var backgroundColor: Color = .backgroundDark
     var strokeColor: Color = .strokeDark
+    var buttonBackgroundColor: Color = .buttonBackgroundDark
 }
 
 class ThemeService : ObservableObject {
