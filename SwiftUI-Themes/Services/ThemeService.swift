@@ -10,16 +10,19 @@ import SwiftUI
 protocol Theme {
     var fontColor: Color { get set }
     var backgroundColor: Color { get set }
+    var strokeColor: Color { get set }
 }
 
 struct LightTheme: Theme {
     var fontColor: Color = .fontLight
     var backgroundColor: Color = .backgroundLight
+    var strokeColor: Color = .strokeLight
 }
 
 struct DarkTheme: Theme {
     var fontColor: Color = .fontDark
     var backgroundColor: Color = .backgroundDark
+    var strokeColor: Color = .strokeDark
 }
 
 class ThemeService : ObservableObject {

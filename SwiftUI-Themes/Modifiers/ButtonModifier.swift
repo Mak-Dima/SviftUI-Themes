@@ -9,12 +9,14 @@ import Foundation
 import SwiftUI
 
 struct ButtonModifier: ViewModifier {
+    @EnvironmentObject var theme: ThemeService
+    
     func body(content: Content) -> some View {
         content
             .background{
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.yellow)
-                    .stroke(Color.black, lineWidth: 1)
+                    .stroke(theme.current.strokeColor, lineWidth: 1)
             }
     }
 }

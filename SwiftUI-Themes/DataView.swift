@@ -30,7 +30,7 @@ struct DataView: View {
                 .background{
                     RoundedRectangle(cornerRadius: 15)
                         .fill(theme.current.backgroundColor)
-                        .stroke(Color.black, lineWidth: 1)
+                        .stroke(theme.current.strokeColor, lineWidth: 1)
                 }
             
             Button("Down"){print("DOWN")}
