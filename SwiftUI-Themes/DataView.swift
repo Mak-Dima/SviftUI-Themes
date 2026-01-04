@@ -23,7 +23,8 @@ struct DataView: View {
                 Text("Up")
                     .customButtonModifier()
             }
-                       Text(textData)
+            
+            Text(textData)
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity )
                 .foregroundStyle(theme.current.fontColor)

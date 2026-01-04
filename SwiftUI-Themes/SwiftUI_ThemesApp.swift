@@ -25,14 +25,14 @@ struct SwiftUI_ThemesApp: App {
 
 extension SwiftUI_ThemesApp {
     func setTabBarApperance() {
-        let tabApperance = UITabBarAppearance()
+        let tabAppearance = UITabBarAppearance()
         
-        tabApperance.stackedLayoutAppearance.normal.iconColor = .lightGray
-        tabApperance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
+        tabAppearance.stackedLayoutAppearance.normal.iconColor = .lightGray
+        tabAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
         
-        tabApperance.compactInlineLayoutAppearance.selected.iconColor = .blue
-        tabApperance.compactInlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.blue]
+        tabAppearance.compactInlineLayoutAppearance.selected.iconColor = .blue
+        tabAppearance.compactInlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.blue]
         
-        UITabBar.appearance().standardAppearance = tabApperance
+        UITabBar.appearance().standardAppearance = tabAppearance
     }
 }
