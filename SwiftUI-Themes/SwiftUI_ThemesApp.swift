@@ -9,9 +9,6 @@ import SwiftUI
 
 @main
 struct SwiftUI_ThemesApp: App {
-    init() {
-        setTabBarApperance()
-    }
     
     @StateObject var themeService: ThemeService = .init()
     
@@ -20,19 +17,5 @@ struct SwiftUI_ThemesApp: App {
             ContentView()
                 .environmentObject(themeService)
         }
-    }
-}
-
-extension SwiftUI_ThemesApp {
-    func setTabBarApperance() {
-        let tabAppearance = UITabBarAppearance()
-        
-        tabAppearance.stackedLayoutAppearance.normal.iconColor = .lightGray
-        tabAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
-        
-        tabAppearance.compactInlineLayoutAppearance.selected.iconColor = .blue
-        tabAppearance.compactInlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.blue]
-        
-        UITabBar.appearance().standardAppearance = tabAppearance
     }
 }

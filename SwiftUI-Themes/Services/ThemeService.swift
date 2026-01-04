@@ -8,11 +8,11 @@
 import SwiftUI
 
 protocol Theme {
-    var fontColor: Color { get set }
-    var backgroundColor: Color { get set }
-    var sectionBackgroundColor: Color { get set }
-    var strokeColor: Color { get set }
-    var buttonBackgroundColor: Color { get set }
+    var fontColor: Color { get }
+    var backgroundColor: Color { get }
+    var sectionBackgroundColor: Color { get }
+    var strokeColor: Color { get }
+    var buttonBackgroundColor: Color { get }
 }
 
 struct LightTheme: Theme {
@@ -31,11 +31,24 @@ struct DarkTheme: Theme {
     var buttonBackgroundColor: Color = .buttonBackgroundDark
 }
 
+enum ThemeType: String, CaseIterable, Identifiable {
+    case light, dark
+    
+    var id: String {
+        self.rawValue
+    }
+    
+    var displayName: String {
+        self.rawValue.capitalized
+    }
+}
+
 class ThemeService : ObservableObject {
     private var lightTheme: Theme = LightTheme()
     private var darkTheme: Theme = DarkTheme()
     
     @Published var current: Theme
+    @Published var selectedTheme: ThemeType = .light
     @Published var isDarkMode: Bool
     @Published var isLightMode: Bool
     
@@ -43,8 +56,31 @@ class ThemeService : ObservableObject {
         current = lightTheme
         isDarkMode = false
         isLightMode = true
+        
+        setTabBarApperance()
     }
     
+    private func setTabBarApperance() {
+        let tabAppearance = UITabBarAppearance()
+        
+        tabAppearance.stackedLayoutAppearance.normal.iconColor = .lightGray
+        tabAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
+        
+        tabAppearance.compactInlineLayoutAppearance.selected.iconColor = .blue
+        tabAppearance.compactInlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.blue]
+        
+        UITabBar.appearance().standardAppearance = tabAppearance
+    }
+    
+    func updateTheme() {
+        switch selectedTheme {
+        case .dark:
+            current = DarkTheme()
+        case .light:
+            current = LightTheme()
+        }
+    }
+
     func toggleTheme() {
         if isDarkMode {
             current = darkTheme
