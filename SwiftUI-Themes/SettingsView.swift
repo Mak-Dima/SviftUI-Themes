@@ -21,7 +21,7 @@ struct SettingsView: View {
                     Toggle("Dark Mode", isOn: $theme.isDarkMode)
                     Toggle("Light Mode", isOn: $theme.isLightMode)
                 }
-                .listRowBackground(theme.current.backgroundColor)
+                .listRowBackground(theme.current.sectionBackgroundColor)
             }
             .scrollContentBackground(.hidden)
             .background(theme.current.backgroundColor)
