@@ -20,13 +20,13 @@ struct SettingsView: View {
                             Text(theme.displayName).tag(theme)
                         }
                     }
+                    .listRowBackground(theme.current.sectionBackgroundColor)
+                    .foregroundStyle(theme.current.fontColor)
                     .pickerStyle(.inline)
-                    .background(theme.current.sectionBackgroundColor)
                 }
-                .background(theme.current.sectionBackgroundColor)
+                .scrollContentBackground(.hidden)
             }
             .padding()
-            .background(theme.current.sectionBackgroundColor)
         }
         .frame(maxWidth: .infinity,  maxHeight: .infinity)
         .padding()
