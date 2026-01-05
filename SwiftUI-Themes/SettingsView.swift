@@ -12,24 +12,30 @@ struct SettingsView: View {
     @EnvironmentObject var theme: ThemeService
     
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading, spacing: 12) {
-                List {
-                    Picker("Theme", selection: $theme.selectedTheme) {
+        VStack {
+            Text("Settings")
+                .font(.system(size: 34, weight: .bold))
+                .padding(.horizontal)
+                .padding(.top, 5)
+                .foregroundStyle(theme.current.fontColor)
+            
+            List {
+                Section {
+                    Picker(selection: $theme.selectedTheme) {
                         ForEach(ThemeType.allCases) { theme in
-                            Text(theme.displayName).tag(theme)
+                            Text(theme.displayName)
+                                .tag(theme)
                         }
+                    } label: {
+                        Text("Theme")
                     }
-                    .listRowBackground(theme.current.sectionBackgroundColor)
-                    .foregroundStyle(theme.current.fontColor)
                     .pickerStyle(.inline)
                 }
-                .scrollContentBackground(.hidden)
+                .listRowBackground(theme.current.sectionBackgroundColor)
+                .foregroundStyle(theme.current.fontColor)
             }
-            .padding()
+            .scrollContentBackground(.hidden)
         }
-        .frame(maxWidth: .infinity,  maxHeight: .infinity)
-        .padding()
         .background(theme.current.backgroundColor)
     }
 }
