@@ -9,8 +9,7 @@ import SwiftUI
 
 @main
 struct SwiftUI_ThemesApp: App {
-    
-    @StateObject var themeService: ThemeService = .init()
+    @StateObject var themeService: ThemeService = ThemeService()
     
     var body: some Scene {
         WindowGroup {

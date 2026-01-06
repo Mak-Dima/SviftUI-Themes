@@ -34,30 +34,33 @@ struct DarkTheme: Theme {
 enum ThemeType: String, CaseIterable, Identifiable {
     case light, dark
     
-    var id: String {
-        self.rawValue
-    }
+    var id: String { self.rawValue }
+    var displayName: String { self.rawValue.capitalized }
     
-    var displayName: String {
-        self.rawValue.capitalized
+    var instance: Theme {
+        switch self {
+        case .light:
+            return LightTheme()
+        case .dark:
+            return DarkTheme()
+        }
     }
 }
 
 class ThemeService : ObservableObject {
-    private var lightTheme: Theme
-    private var darkTheme: Theme
     
     @Published var current: Theme
-    @Published var selectedTheme: ThemeType = .light {
+    
+    @AppStorage("selected_theme") var selectedTheme: ThemeType = .light {
         didSet {
-            updateTheme()
+            current = selectedTheme.instance
         }
     }
     
     init() {
-        lightTheme = LightTheme()
-        darkTheme = DarkTheme()
-        current = lightTheme
+        let userPreferedTheme = UserDefaults.standard.string(forKey: "selected_theme") ?? ThemeType.light.rawValue
+        let theme = ThemeType(rawValue: userPreferedTheme) ?? .light
+        current = theme.instance
         setTabBarApperance()
     }
     
@@ -71,14 +74,5 @@ class ThemeService : ObservableObject {
         tabAppearance.compactInlineLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.blue]
         
         UITabBar.appearance().standardAppearance = tabAppearance
-    }
-    
-    func updateTheme() {
-        switch selectedTheme {
-        case .dark:
-            current = darkTheme
-        case .light:
-            current = lightTheme
-        }
     }
 }
