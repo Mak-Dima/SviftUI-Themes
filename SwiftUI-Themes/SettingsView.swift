@@ -18,21 +18,22 @@ struct SettingsView: View {
                 .padding(.horizontal)
                 .padding(.top, 5)
                 .foregroundStyle(theme.current.fontColor)
-            
+
             List {
                 Section {
                     Picker(selection: $theme.selectedTheme) {
                         ForEach(ThemeType.allCases) { theme in
                             Text(theme.displayName)
                                 .tag(theme)
+                                .foregroundStyle(self.theme.current.fontColor)
                         }
                     } label: {
                         Text("Theme")
+                            .foregroundStyle(theme.current.fontColor)
                     }
                     .pickerStyle(.inline)
                 }
                 .listRowBackground(theme.current.sectionBackgroundColor)
-                .foregroundStyle(theme.current.fontColor)
             }
             .scrollContentBackground(.hidden)
         }
